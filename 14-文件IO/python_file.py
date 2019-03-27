@@ -28,7 +28,6 @@ print "当前文件位置：", file.tell()
 print "重新读取字符串：", file.read(10)
 file.close()
 
-
 import os
 os.rename("temp.json", "other.json")
 print os.rmdir("test")
