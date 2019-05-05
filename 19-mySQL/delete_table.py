@@ -3,12 +3,7 @@
 
 # mac 下操作MySQL:  https://www.jianshu.com/p/b13f99cbdf55
 # python mysql 操作: https://www.runoob.com/python/python-mysql.html
-
-# if you want check MySQLdb is working
-# you can in terminal input: 
-# python 
-# import MySQLdb
-# if not error, you succeed
+# 操作相关表: employeeTable
 
 import mysql.connector
 
@@ -18,14 +13,14 @@ mysqlDB = mysql.connector.connect(user="root", passwd="12345678", database="TEST
 # 使用 cursor()方法获取操作游标
 cursor = mysqlDB.cursor()
 
-# 使用 execute方法执行SQL语句
-cursor.execute("SELECT VERSION()")
-
-# 使用 fetchone() 方法获取一条数据
-data = cursor.fetchone()
-print 'Database version : %s ' % data
-
-# 执行sql语句
+delete_sql = "DELETE FROM employeeTable \
+              WHERE INCOME <= %s " % (1000)
+try:
+    cursor.execute(delete_sql)
+    mysqlDB.commit()
+except mysql.connector.errors.DataError as e:
+    print "删除数据失败"
+    print e
+    mysqlDB.rollback()
+    
 mysqlDB.close()
-
-

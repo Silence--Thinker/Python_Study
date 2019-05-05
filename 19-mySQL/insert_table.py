@@ -3,12 +3,7 @@
 
 # mac 下操作MySQL:  https://www.jianshu.com/p/b13f99cbdf55
 # python mysql 操作: https://www.runoob.com/python/python-mysql.html
-
-# if you want check MySQLdb is working
-# you can in terminal input: 
-# python 
-# import MySQLdb
-# if not error, you succeed
+# 操作相关表: employeeTable
 
 import mysql.connector
 
@@ -18,14 +13,18 @@ mysqlDB = mysql.connector.connect(user="root", passwd="12345678", database="TEST
 # 使用 cursor()方法获取操作游标
 cursor = mysqlDB.cursor()
 
-# 使用 execute方法执行SQL语句
-cursor.execute("SELECT VERSION()")
+insert_sql = """
+    INSERT INTO employeeTable (
+    FIRST_NAME, LAST_NAME, AGE, SEX, INCOME )
+    VALUES ('cao', 'xiufa', '24', 'm', '3000')
+"""
+try: 
+    cursor.execute(insert_sql)
+    mysqlDB.commit()
+except mysql.connector.errors.DataError as e :
+    print 'mysql 插入时发生错误！'
+    print e
+    # 发生错误是回滚
+    mysqlDB.rollback()
 
-# 使用 fetchone() 方法获取一条数据
-data = cursor.fetchone()
-print 'Database version : %s ' % data
-
-# 执行sql语句
 mysqlDB.close()
-
-
