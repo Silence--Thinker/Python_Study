@@ -28,8 +28,7 @@ def find_unuse_image_in_tsx_file (dirPath):
     code_file_list = get_all_file(dirPath, '.tsx$|.js$|.jsx$|.ts$')
     print "匹配到的图片文件个数为: {}个".format(len(image_file_list))
     print "匹配到的code文件个数为: {}个".format(len(code_file_list))
-    # for file in image_file_list:
-        # print "=== {}".format(os.path.basename(file))
+    
     image_file_unuse_list = list(image_file_list)
 
     for code_file in code_file_list:
@@ -38,6 +37,10 @@ def find_unuse_image_in_tsx_file (dirPath):
             line = codeFile.readline()
             lineCount = 1
             while line:
+                # if re.search(r'ShoppingCart', line, re.X):
+                #     print'+++++++++++++++++++++++++++++'
+                #     break
+
                 for imageFile in image_file_list:
                     fileName = os.path.basename(imageFile)
                     if re.search(r'{}'.format(fileName.replace("@2x", "")), line, re.X):
@@ -53,6 +56,7 @@ def find_unuse_image_in_tsx_file (dirPath):
     for unuse_file in image_file_unuse_list:
         fileName = os.path.basename(unuse_file)
         print "未用到的图片为: {}".format(fileName)
+
 
 dirPath = "/Users/silence/Desktop/Working/flashbuy_mrn/src/pages"
 child_file_list = os.listdir(dirPath)

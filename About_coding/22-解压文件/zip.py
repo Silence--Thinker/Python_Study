@@ -3,36 +3,40 @@
 
 import zipfile
 import os
+import sys
+sys.path.append(r"./")
+# from creatDir import creat_dir
+import creatDir as CreatDir
 
 # .zip 文件的解压方式
 def un_zip(file_path):
     """unzip zip file"""
-    zip_file = zipfile.ZipFile(file_path, "r")
     file_basename = os.path.basename(file_path)
-    file_name = os.path.splitext(file_basename)[0]
-    outfile = file_name
-    if os.path.isdir(outfile):
-        pass
-    else:
-        os.mkdir(outfile)
+    dir_path = os.path.splitext(file_path)[0]
+    outFile = CreatDir.creat_dir(dir_path, 1)
+
     file_list = []
     index = 0
-    for i in zip_file.infolist():
-        index += 1
-        if i.flag_bits & 0x01:
-            print "是加密文件"
-        else:
-            print "不是加密文件", index, i.filename
-    for names in zip_file.namelist():
-        if names.startswith("__MACOSX"):
+    zip_file = zipfile.ZipFile(file_path, "r")
+    for fileInfo in zip_file.infolist():
+        if fileInfo.filename.startswith("__MACOSX"):
             pass
         else:
-            # index += 1
-            file_list.append(names)
-            # print "index {}, file name: {}".format(index, names)
-            # zip_file.extract(names, outfile", "1122")
+            index += 1
+            file_list.append(fileInfo.filename)
+
+            # 是加密文件
+            if fileInfo.flag_bits & 0x01:
+                zip_file.extract(fileInfo.filename, outFile, '1234')
+                pass
+            # 不是加密文件
+            else:
+                zip_file.extract(fileInfo.filename, outFile)
     zip_file.close()
-    print "file count: {}".format(len(file_list))
+    print "已解压文件 {} 中: {}个文件, 目标文件夹为: {}".format(file_basename, len(file_list), os.path.basename(outFile))
 
 
-un_zip("/Users/silence/Documents/GitHub/Python_Study/About_coding/22-解压文件/pic.zip")
+un_zip("/Users/silence/Desktop/Temp/test/demo.zip")
+
+# dir_path = "/Users/silence/Desktop/Temp/test/demo"
+# creat_dir(dir_path, 1)
