@@ -48,19 +48,19 @@ sourceList = [
     ################### C端 #####################
     #iOS
     {Source.name: "supermarket_ios_channel", Source.git: "ssh://git@git.sankuai.com/reco/supermarket_ios_channel.git", 
-     Source.branch: "7.38/development", Source.type: CodeLanguage.iOS, Source.team: Team.C, Source.chdir: "/Classes"},
+     Source.branch: "7.40/development", Source.type: CodeLanguage.iOS, Source.team: Team.C, Source.chdir: "/Classes"},
 
     {Source.name: "supermarket_ios_search", Source.git: "ssh://git@git.sankuai.com/reco/supermarket_ios_search.git", 
-     Source.branch: "7.38/development", Source.type: CodeLanguage.iOS, Source.team: Team.C, Source.chdir: "/Classes"},
+     Source.branch: "7.39/development", Source.type: CodeLanguage.iOS, Source.team: Team.C, Source.chdir: "/Classes"},
     
     {Source.name: "supermarket_ios_kit", Source.git: "ssh://git@git.sankuai.com/reco/supermarket_ios_kit.git", 
-     Source.branch: "7.38/development", Source.type: CodeLanguage.iOS, Source.team: Team.C, Source.chdir: "/Classes"},
+     Source.branch: "7.39/development", Source.type: CodeLanguage.iOS, Source.team: Team.C, Source.chdir: "/Classes"},
     
     {Source.name: "supermarket_ios_mediator", Source.git: "ssh://git@git.sankuai.com/reco/supermarket_ios_mediator.git", 
-     Source.branch: "7.38/development", Source.type: CodeLanguage.iOS, Source.team: Team.C, Source.chdir: "/Classes"},
+     Source.branch: "7.39/development", Source.type: CodeLanguage.iOS, Source.team: Team.C, Source.chdir: "/Classes"},
 
     {Source.name: "supermarket_ios_platform", Source.git: "ssh://git@git.sankuai.com/reco/supermarket_ios_platform.git", 
-     Source.branch: "7.38/development", Source.type: CodeLanguage.iOS, Source.team: Team.C, Source.chdir: "/Classes"},
+     Source.branch: "7.39/development", Source.type: CodeLanguage.iOS, Source.team: Team.C, Source.chdir: "/Classes"},
 
     # Android
     {Source.name: "waimai_android_store", Source.git: "ssh://git@git.sankuai.com/wm/waimai_android_store.git", 
