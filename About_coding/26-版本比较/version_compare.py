@@ -1,6 +1,48 @@
 #!/usr/bin/python
 #-*- coding: utf-8 -*-
 
+
+# 比较两个版本的大小
+def compare_version_release (version_01, version_02):
+
+    if version_01 == version_02:
+        return 0
+    if version_01 and not version_02:
+        return 1
+    if version_02 and not version_01:
+        return -1
+
+    result = 0
+    v1_array = version_01.split('.')
+    v2_array = version_02.split('.')
+    v1_count = len(v1_array)
+    v2_count = len(v2_array)
+
+    version_count = min([v1_count, v2_count])
+    i = 0
+    while (i < version_count) :
+        if (int(v1_array[i]) > int(v2_array[i])):
+            result = 1
+            break
+        elif (int(v1_array[i]) < int(v2_array[i])):
+            result = -1
+            break
+        else:
+            result = 0
+            i += 1
+        pass
+    pass
+
+    if result == 0:
+        if (v1_count > v2_count):
+            result = 1
+        elif (v1_count < v2_count):
+            result = -1
+        pass
+    pass
+    return result
+pass
+
 # 比较两个版本的大小
 def compare_version (version_01, version_02):
 
